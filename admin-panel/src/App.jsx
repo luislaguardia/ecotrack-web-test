@@ -66,6 +66,18 @@ function App() {
             )
           }
         />
+        <Route
+  path="/settings"
+  element={
+    isAuthenticated ? (
+      <Layout>
+        <Settings />
+      </Layout>
+    ) : (
+      <Navigate to="/" />
+    )
+  }
+/>
       </Routes>
     </Router>
   );
