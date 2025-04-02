@@ -7,7 +7,7 @@ const Settings = () => {
     if (confirm("Are you sure you want to logout?")) {
       localStorage.removeItem("token");
       navigate("/");
-      window.location.reload(); // Optional: forces App.jsx to re-check auth
+      window.location.reload(); //reeecheck auth
     }
   };
 
