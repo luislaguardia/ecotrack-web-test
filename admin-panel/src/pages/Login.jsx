@@ -10,7 +10,7 @@ const Login = ({ setIsAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('https://ecotrack-back.onrender.com/login', { email, password });
+      const { data } = await axios.post('https://ecotrack-back.onrender.com/api/login', { email, password });
       localStorage.setItem('token', data.token);
       setIsAuthenticated(true);
       navigate('/dashboard');
