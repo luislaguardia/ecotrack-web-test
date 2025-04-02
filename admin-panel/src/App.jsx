@@ -4,7 +4,8 @@ import Login from "./pages/Login";
 import Dashboard from "./components/Dashboard";
 import Users from "./components/Users";
 import Sidebar from "./components/Sidebar";
-import News from "./components/News"; // ✅ import News
+import News from "./components/News";
+import Settings from "./components/Settings";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
