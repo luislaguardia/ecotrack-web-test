@@ -1,58 +1,30 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
+const Login = ({ setIsAuthenticated }) => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const baseUrl = import.meta.env.VITE_API_URL || 'https://ecotrack-back.onrender.com';
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch(`${baseUrl}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        onLogin(data.user);
-      } else {
-        const err = await response.json();
-        setError(err.message || 'Login failed');
-      }
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
+      const { data } = await axios.post('http://localhost:5003/api/admin/login', { email, password });
+      localStorage.setItem('token', data.token);
+      setIsAuthenticated(true);
+      navigate('/dashboard');
+    } catch {
+      alert('Invalid credentials');
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <form onSubmit={handleLogin}>
+      <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
+      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required />
+      <button type="submit">Login</button>
+    </form>
   );
 };
 
