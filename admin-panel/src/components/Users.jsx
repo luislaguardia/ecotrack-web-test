@@ -18,7 +18,7 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5003/api/users", {
+      const res = await axios.get("https://ecotrack-back.onrender.com/api/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(res.data);
@@ -40,7 +40,7 @@ const Users = () => {
   const handleUpdate = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5003/api/users/${editingUser}`, formData, {
+      await axios.put(`https://ecotrack-back.onrender.com/api/users/${editingUser}`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("User updated!");
@@ -55,7 +55,7 @@ const Users = () => {
     if (confirm("Are you sure you want to delete this user?")) {
       try {
         const token = localStorage.getItem("token");
-        await axios.delete(`http://localhost:5003/api/users/${id}`, {
+        await axios.delete(`https://ecotrack-back.onrender.com/api/users/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(users.filter((u) => u._id !== id));
