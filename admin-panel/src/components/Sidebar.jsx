@@ -10,7 +10,7 @@ const Sidebar = () => (
         <li><Link to="/users">User Management</Link></li>
         <li><Link to="/news">News & Updates</Link></li>
         <li><Link to="/">System Notifications</Link></li>
-        <li><Link to="/">Settings</Link></li>
+        <li><Link to="/settings">Settings</Link></li>
       </ul>
     </nav>
   </aside>
