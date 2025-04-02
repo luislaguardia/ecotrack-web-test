@@ -45,14 +45,8 @@ const Dashboard = () => {
   }, []);
 
   const chartData = [
-    {
-      name: "Users",
-      count: totalUsers,
-    },
-    {
-      name: "News Posts",
-      count: latestNews.length,
-    },
+    { name: "Users", count: totalUsers },
+    { name: "News Posts", count: latestNews.length },
   ];
 
   return (
