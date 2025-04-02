@@ -23,7 +23,7 @@ const Dashboard = () => {
           axios.get("https://ecotrack-back.onrender.com/api/users", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("https://ecotrack-back.onrender.com/api/users", {
+          axios.get("https://ecotrack-back.onrender.com/api/news", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
