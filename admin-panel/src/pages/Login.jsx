@@ -10,21 +10,37 @@ const Login = ({ setIsAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('https://ecotrack-back.onrender.com/api/login', { email, password });
+      const { data } = await axios.post('https://ecotrack-back.onrender.com/api/login', {
+        email,
+        password
+      });
       localStorage.setItem('token', data.token);
       setIsAuthenticated(true);
       navigate('/dashboard');
-    } catch {
-      alert('Invalid credentials');
+    } catch (error) {
+      alert('Login failed. Please check your credentials.');
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required />
-      <button type="submit">Login</button>
-    </form>
+    <div className="login-container">
+      <h2>Admin Login</h2>
+      <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 };
 
