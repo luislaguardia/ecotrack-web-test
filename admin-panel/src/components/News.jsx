@@ -13,7 +13,7 @@ const News = () => {
 
   const fetchNews = async () => {
     try {
-      const res = await axios.get("http://localhost:5003/api/news");
+      const res = await axios.get("https://ecotrack-back.onrender.com/api/news");
       setNewsList(res.data);
     } catch (err) {
       console.error("Failed to fetch news:", err);
@@ -23,9 +23,9 @@ const News = () => {
   const handleSubmit = async () => {
     try {
       if (editingNewsId) {
-        await axios.put(`http://localhost:5003/api/news/${editingNewsId}`, formData);
+        await axios.put(`https://ecotrack-back.onrender.com/api/news/${editingNewsId}`, formData);
       } else {
-        await axios.post("http://localhost:5003/api/news", formData);
+        await axios.post("https://ecotrack-back.onrender.com/api/news", formData);
       }
       fetchNews();
       setFormData({ title: "", content: "", image: "" });
@@ -39,7 +39,7 @@ const News = () => {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this news?")) {
       try {
-        await axios.delete(`http://localhost:5003/api/news/${id}`);
+        await axios.delete(`https://ecotrack-back.onrender.com/api/news/${id}`);
         setNewsList(newsList.filter((n) => n._id !== id));
       } catch (err) {
         console.error("Delete failed:", err);
