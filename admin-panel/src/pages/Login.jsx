@@ -10,7 +10,7 @@ const Login = ({ setIsAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('https://ecotrack-back.onrender.com/api/login', {
+      const { data } = await axios.post('https://ecotrack-back.onrender.com/api/admin/login', {
         email,
         password
       });
